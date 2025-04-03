@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<h:head>
+    <title>Title</title>
+</h:head>
+
+<h:body>
+
+    <h:form>
+        <h:inputText for="ime" value="Ime Uporabnika:"/>
+        <h:outputText id="ime" action="#{vstaviBean.ime}"/>
+
+        <h:inputText for="email" value="Email Uporabnika:"/>
+        <h:outputText id="email" action="#{vstaviBean.email}"/>
+
+        <h:inputText for="balance" value="Balance Uporabnika:"/>
+        <h:outputText id="balance" action="#{vstaviBean.balance}"/>
+
+        <h:inputText for="carType" value="Tip Avta Uporabnika:"/>
+        <h:outputText id="carType" action="#{vstaviBean.carType}"/>
+    </h:form>
+</h:body>
+
+</html>
