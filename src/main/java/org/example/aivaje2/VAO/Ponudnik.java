@@ -1,16 +1,29 @@
 package org.example.aivaje2.VAO;
 
-import java.util.ArrayList;
+import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
+@Entity
+@Table(name = "ponudnik")
 public class Ponudnik {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String naziv;
-    private ArrayList<Polnilnica> postaje;
 
-    public Ponudnik(int id, String naziv) {
-        this.id = id;
+    @OneToMany(mappedBy = "ponudnik", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<Polnilnica> postaje;
+
+    public Ponudnik(String naziv) {
         this.naziv = naziv;
         this.postaje = new ArrayList<>();
+    }
+
+    public Ponudnik() {
     }
 
     public int getId() {
@@ -29,7 +42,7 @@ public class Ponudnik {
         this.naziv = naziv;
     }
 
-    public ArrayList<Polnilnica> getPostaje() {
+    public List<Polnilnica> getPostaje() {
         return postaje;
     }
 

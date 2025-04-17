@@ -1,25 +1,47 @@
 package org.example.aivaje2.VAO;
 
+import jakarta.persistence.*;
 import org.example.aivaje2.Opazovalci.PolnilnicaObserver;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Polnilnica {
+
+@Entity
+@Table(name = "polnilnica")
+public class Polnilnica implements Serializable {
+    private static final long serialVersionUID = 2L;
+
+    @Id
+    @GeneratedValue
     private int id;
+
     private String lokacija;
     private String naziv;
+
+    @ManyToOne
+    @JoinColumn(name = "ponudnik_id", nullable = false)
     private Ponudnik ponudnik;
     private int hitrost;
     private boolean isActive;
     private String regija;
+
+    @Transient
     private List<PolnilnicaObserver> observers = new ArrayList<>();
 
-    public Polnilnica(int id, String lokacija, String naziv, Ponudnik ponudnik, boolean isActive, int hitrost, String regija) {
-        this.id = id;
+    public Polnilnica(String lokacija, String naziv, Ponudnik ponudnik, boolean isActive, int hitrost, String regija) {
         this.lokacija = lokacija;
         this.naziv = naziv;
         this.ponudnik = ponudnik;
+        this.isActive = isActive;
+        this.hitrost = hitrost;
+        this.regija = regija;
+    }
+
+    public Polnilnica(String lokacija, String naziv, boolean isActive, int hitrost, String regija) {
+        this.lokacija = lokacija;
+        this.naziv = naziv;
         this.isActive = isActive;
         this.hitrost = hitrost;
         this.regija = regija;

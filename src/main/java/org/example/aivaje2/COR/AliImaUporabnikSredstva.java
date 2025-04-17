@@ -3,7 +3,7 @@ package org.example.aivaje2.COR;
 import org.example.aivaje2.VAO.Polnilnica;
 import org.example.aivaje2.VAO.User;
 
-public class AliImaUporabnikSredstva implements iPolnilnicaHandler{
+public class AliImaUporabnikSredstva implements iPolnilnicaHandler {
     private iPolnilnicaHandler next;
 
     @Override
@@ -12,13 +12,14 @@ public class AliImaUporabnikSredstva implements iPolnilnicaHandler{
     }
 
     @Override
-    public void handleReq(User user, Polnilnica polnilnica) {
-        if(user.getBalance() < 0){
+    public boolean handleReq(User user, Polnilnica polnilnica) {
+        if (user.getBalance() < 0) {
             System.out.println("Uporabnik nima dovolj sredstev");
-            return;
+            return false;
         }
-        if(next != null){
-            next.handleReq(user, polnilnica);
+        if (next != null) {
+            return next.handleReq(user, polnilnica);
         }
+        return true;
     }
 }

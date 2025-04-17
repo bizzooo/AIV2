@@ -1,5 +1,8 @@
 package org.example.aivaje2.Service;
 
+import jakarta.ejb.EJB;
+import jakarta.ejb.Stateless;
+import jakarta.enterprise.context.ApplicationScoped;
 import org.example.aivaje2.DAO.PonudnikDAO;
 import org.example.aivaje2.DAO.iPonudnikDAO;
 import org.example.aivaje2.VAO.Polnilnica;
@@ -7,14 +10,17 @@ import org.example.aivaje2.VAO.Ponudnik;
 
 import java.util.ArrayList;
 
+@Stateless
 public class PonudnikService {
-    private final iPonudnikDAO ponudnikDAO = PonudnikDAO.getInstance();
+
+    @EJB
+    private iPonudnikDAO ponudnikDAO;
 
     public void dodajPonudnika(int id, String naziv){
         if(id < 0 || naziv == null){
             throw new IllegalArgumentException("Napaka pri dodajanju ponudnika");
         }
-        ponudnikDAO.dodajPonudnika(new Ponudnik(id,naziv));
+        ponudnikDAO.dodajPonudnika(new Ponudnik(naziv));
     }
 
     public void dodajPonudnika(Ponudnik ponudnik){

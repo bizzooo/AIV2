@@ -1,46 +1,45 @@
 package org.example.aivaje2.DAO;
 
+import jakarta.ejb.Local;
+import jakarta.ejb.Stateless;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.example.aivaje2.VAO.User;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
+
+@Stateless
+@Local(iUserDAO.class)
 public class UserDAO implements iUserDAO{
-    private final List<User> users = Collections.synchronizedList(new ArrayList<User>());
-    private static volatile UserDAO instance = null;
-
-    private UserDAO() {}
-
-    public static UserDAO getInstance() {
-        if(instance == null) {
-            synchronized (UserDAO.class) {
-                if(instance == null) {
-                    instance = new UserDAO();
-                }
-            }
-        }
-        return instance;
-    }
+    @PersistenceContext
+    private EntityManager em;
 
     @Override
     public void insertUser(User user) {
-        synchronized (users) {
-            users.add(user);
-        }
+        em.persist(user);
     }
 
     @Override
     public void updateUser(User user) {
-        synchronized (users) {
-            users.stream().filter(u -> u == user).findFirst().ifPresent(u -> users.set(users.indexOf(u), user));
-        }
+        em.merge(user);
     }
 
     @Override
     public void deleteUser(User user) {
-        synchronized (users) {
-            users.remove(user);
-        }
+        User managedUser = em.merge(user);
+        em.remove(managedUser);
     }
+
+    @Override
+    public User getUser(User user) {
+        return em.find(User.class, user.getId());
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        return em.createQuery("SELECT u FROM User u", User.class)
+                .getResultList();
+    }
+
 }

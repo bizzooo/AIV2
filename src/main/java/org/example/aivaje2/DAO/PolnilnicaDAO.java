@@ -1,5 +1,9 @@
 package org.example.aivaje2.DAO;
 
+import jakarta.ejb.Local;
+import jakarta.ejb.Stateless;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.example.aivaje2.VAO.Polnilnica;
 
 import java.util.ArrayList;
@@ -7,10 +11,16 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
+@Stateless
+@Local(iPolnilnicaDAO.class)
 public class PolnilnicaDAO implements iPolnilnicaDAO{
 
+    @PersistenceContext
+    private EntityManager em;
+
+    /*
     private static volatile PolnilnicaDAO instance;
-    private final List<Polnilnica> polnilnice = Collections.synchronizedList(new ArrayList<>());
 
     private PolnilnicaDAO(){}
 
@@ -24,64 +34,40 @@ public class PolnilnicaDAO implements iPolnilnicaDAO{
         }
         return instance;
     }
-
+    */
     @Override
     public void dodajPostajo(Polnilnica postaja) {
-        synchronized (polnilnice) {
-            if (polnilnice.stream().noneMatch(p -> p.getId() == postaja.getId())) {
-                polnilnice.add(postaja);
-            }
-        }
+        em.persist(postaja);
     }
 
     @Override
     public void posodobiPostajo(Polnilnica postaja) {
-        synchronized (polnilnice) {
-            polnilnice.stream()
-                    .filter(p -> p.getId() == postaja.getId())
-                    .findFirst()
-                    .ifPresent(p -> polnilnice.set(polnilnice.indexOf(p), postaja));
-        }
+        em.merge(postaja);
     }
 
     @Override
     public void odstraniPostajo(int id) {
-        synchronized (polnilnice) {
-            polnilnice.stream()
-                    .filter(p -> p.getId() == id)
-                    .findFirst()
-                    .ifPresent(p -> polnilnice.remove(polnilnice.indexOf(p)));
+        Polnilnica postaja = em.find(Polnilnica.class, id);
+        if (postaja != null) {
+            em.remove(postaja);
         }
     }
 
     @Override
     public Polnilnica pridobiPostajo(int id) {
-        synchronized (polnilnice) {
-            return polnilnice.stream()
-                    .filter(p -> p.getId() == id)
-                    .findFirst()
-                    .orElse(null);
-        }
+        return em.find(Polnilnica.class, id);
     }
 
     @Override
     public List<Polnilnica> vrniVsePostaje() {
-        synchronized (polnilnice) {
-            return new ArrayList<>(polnilnice);
-        }
+        return em.createQuery("SELECT p FROM Polnilnica p", Polnilnica.class)
+                .getResultList();
     }
 
     @Override
     public List<Polnilnica> vrniPostajePoPonudniku(int ponudnikId) {
-        synchronized (polnilnice) {
-            return polnilnice.stream()
-                    .filter(p -> p.getPonudnikId() == ponudnikId)
-                    .collect(Collectors.toCollection(ArrayList::new));
-        }
-        //collect() za arugmente rabi Collectors class ki ma neke staticne metode (no instance needed)
-        //toCollection vrze vse iteme ki so preko streama prisli do nje in jih vrze v nek Collection
-        //ArrayList in this case new ArrayList cuz i just return it lahko bi pa tudi nardil
-        //nek prazen ArrayList<Polnilnica> foo = new ArrayList in passal toCollection(foo) in pac returnal foo
-        //v glavnem looks disguisting
+        return em.createQuery("SELECT p FROM Polnilnica p WHERE p.ponudnik.id = :ponudnikId", Polnilnica.class)
+                .setParameter("ponudnikId", ponudnikId)
+                .getResultList();
     }
 }

@@ -9,7 +9,41 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ecfa3f3-ede7-4494-908e-2c7522669788" name="Changes" comment="" />
+    <list default="true" id="9ecfa3f3-ede7-4494-908e-2c7522669788" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/aivaje2/COR/AliImaUporabnikSredstva.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/aivaje2/COR/AliImaUporabnikSredstva.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/aivaje2/COR/PolnilnicaNaVoljo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/aivaje2/COR/PolnilnicaNaVoljo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/aivaje2/COR/aliJeKompatibilna.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/aivaje2/COR/aliJeKompatibilna.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/aivaje2/COR/iPolnilnicaHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/aivaje2/COR/iPolnilnicaHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/aivaje2/DAO/PolnilnicaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/aivaje2/DAO/PolnilnicaDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/aivaje2/DAO/PonudnikDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/aivaje2/DAO/PonudnikDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/aivaje2/DAO/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/aivaje2/DAO/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/aivaje2/DAO/iPolnilnicaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/aivaje2/DAO/iPolnilnicaDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/aivaje2/DAO/iPonudnikDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/aivaje2/DAO/iPonudnikDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/aivaje2/DAO/iUserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/aivaje2/DAO/iUserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/aivaje2/MrBean/CRUDBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/aivaje2/MrBean/CRUDBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/aivaje2/MrBean/VstaviPolnilnicoBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/aivaje2/MrBean/VstaviPolnilnicoBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/aivaje2/Service/PolnilnicaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/aivaje2/Service/PolnilnicaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/aivaje2/Service/PonudnikService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/aivaje2/Service/PonudnikService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/aivaje2/Service/RemotePService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/aivaje2/Service/RemotePService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/aivaje2/Service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/aivaje2/Service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/aivaje2/VAO/Polnilnica.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/aivaje2/VAO/Polnilnica.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/aivaje2/VAO/Ponudnik.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/aivaje2/VAO/Ponudnik.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/aivaje2/VAO/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/aivaje2/VAO/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/Dodajanje.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Dodajanje.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/beans.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/beans.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/template.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/template.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/dodajPolnilnico.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/dodajPolnilnico.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/dodajPonudnika.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/dodajPonudnika.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/dodajUser.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/dodajUser.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/polnilnice.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/polnilnice.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/ponudniki.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/ponudniki.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/users.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/users.xhtml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,8 +52,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="facelets" />
+        <option value="cdi.beans_4_1" />
+        <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -50,27 +86,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JBoss/WildFly Server.JBoss/WildFly 35.0.1.Final.executor": "Run",
-    "Maven.AIVaje2 [clean].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Projects/AIVaje2/src/main/java/org/example/aivaje2",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JBoss/WildFly Server.JBoss/WildFly 35.0.1.Final.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.AIVaje2 [clean].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Projects/AIVaje2/src/main/java/org/example/aivaje2&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Projects\AIVaje2\src\main\java\org\example\aivaje2" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Projects\AIVaje2\src\main\webapp" />
     </key>
   </component>
   <component name="RunManager">
@@ -164,11 +203,32 @@
       <workItem from="1743668638341" duration="4751000" />
       <workItem from="1743677673483" duration="4177000" />
       <workItem from="1743695052165" duration="310000" />
-      <workItem from="1743695442014" duration="1120000" />
+      <workItem from="1743695442014" duration="20143000" />
+      <workItem from="1743717725193" duration="1186000" />
+      <workItem from="1743720743508" duration="3040000" />
+      <workItem from="1743758925533" duration="2583000" />
+      <workItem from="1744358818910" duration="6123000" />
+      <workItem from="1744365277665" duration="9683000" />
+      <workItem from="1744633493130" duration="7342000" />
+      <workItem from="1744718347893" duration="299000" />
+      <workItem from="1744718933007" duration="3419000" />
+      <workItem from="1744722983428" duration="38000" />
+      <workItem from="1744723074320" duration="403000" />
+      <workItem from="1744921416725" duration="744000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.IllegalArgumentException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

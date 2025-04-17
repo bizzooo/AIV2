@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/templates/template.xhtml">
+    <ui:define name="content">
+        <h:form id="form">
+            <p:dataTable id="dataTable" var="p" value="#{crudBean.polnilnice}" paginator="true" rows="10">
+                <p:column headerText="ID">
+                    #{p.id}
+                </p:column>
+                <p:column headerText="Naziv">
+                    #{p.naziv}
+                </p:column>
+                <p:column headerText="Lokacija">
+                    #{p.lokacija}
+                </p:column>
+                <p:column headerText="Ponudnik">
+                    #{p.ponudnik.naziv}
+                </p:column>
+                <p:column headerText="Akcije">
+                    <!-- Edit button: set selected item and show dialog -->
+                    <p:commandButton value="Uredi"
+                                     action="#{crudBean.urediPolnilnica(p)}"
+                                     process="@this"
+                                     update=":form:dlg"
+                                     oncomplete="PF('dlg').show();" />
+                    <!-- Delete button with a confirmation dialog -->
+                    <p:commandButton value="Briši"
+                                     action="#{crudBean.deletePolnilnica(p)}"
+                                     process="@this"
+                                     update="dataTable">
+                        <f:ajax confirm="Ste prepričani?" />
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+
+            <!-- Dialog for editing a charging station (polnilnica) -->
+            <p:dialog id="dlg" header="Uredi polnilnico" widgetVar="dlg" modal="true" resizable="false">
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputLabel for="naziv" value="Naziv:" />
+                    <p:inputText id="naziv" value="#{crudBean.izbranaPolnilnica.naziv}" required="true" />
+
+                    <h:outputLabel for="lokacija" value="Lokacija:" />
+                    <p:inputText id="lokacija" value="#{crudBean.izbranaPolnilnica.lokacija}" required="true" />
+
+                    <!-- Additional fields as needed -->
+                </h:panelGrid>
+                <p:commandButton value="Shrani"
+                                 action="#{crudBean.savePolnilnica}"
+                                 update="dataTable"
+                                 oncomplete="PF('dlg').hide();" />
+            </p:dialog>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>

@@ -1,14 +1,23 @@
 package org.example.aivaje2.DAO;
 
+import jakarta.ejb.Local;
+import jakarta.ejb.Stateless;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.example.aivaje2.VAO.Polnilnica;
 import org.example.aivaje2.VAO.Ponudnik;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
+
+@Stateless
+@Local(iPonudnikDAO.class)
 public class PonudnikDAO implements iPonudnikDAO{
-    private final List<Ponudnik> ponudniki = Collections.synchronizedList(new ArrayList<>());
+
+    @PersistenceContext
+    private EntityManager em;
+
+    /*
     private static volatile PonudnikDAO instance;
 
     private PonudnikDAO(){};
@@ -23,108 +32,74 @@ public class PonudnikDAO implements iPonudnikDAO{
         }
         return instance;
     }
+    */
+
 
     @Override
     public void dodajPonudnika(Ponudnik ponudnik) {
-        synchronized (ponudniki) {
-            if (ponudniki.stream().noneMatch(p -> p.getId() == ponudnik.getId())) {
-                ponudniki.add(ponudnik);
-            }
-        }
-        //Disgusting javascript vibes
-        //stream() creates a ¿? stream ¿?
-        //noneMatch for each {if(all false)}
+        em.persist(ponudnik);
     }
+
 
     @Override
     public void posodobiPonudnika(Ponudnik ponudnik) {
-        synchronized (ponudniki) {
-            ponudniki.stream()
-                    .filter(p -> p.getId() == ponudnik.getId())
-                    .findFirst()
-                    .ifPresent(p -> {
-                        ponudniki.set(ponudniki.indexOf(p), ponudnik);
-                    });
-        }
-        //.filter() == for if replacement
-        //.findFirst() return replacement ko je filter bool true
-        //.ifPresent() Ne rabim implementirat ce nic ne najde?
-        // set prepise shit shranjeno na memory address of index p z drugim argumentom in this case ponudnik
+        em.merge(ponudnik);
     }
 
     @Override
     public void odstraniPonudnika(int id) {
-        synchronized (ponudniki) {
-            ponudniki.stream()
-                    .filter(p -> p.getId() == id)
-                    .findFirst()
-                    .ifPresent(p -> ponudniki.remove(ponudniki.indexOf(p)));
-        }
-        // remove ostrani tisto kar je shranjeno na indexu provided
-    }
-
-    @Override
-    public void dodajPostajo(Ponudnik ponudnik,Polnilnica postaja) {
-        synchronized (ponudniki) {
-            ponudniki.stream()
-                    .filter(p -> p.getId() == ponudnik.getId())
-                    .findFirst()
-                    .ifPresent(p -> {
-                        if (p.getPostaje().stream().noneMatch(po -> po.getId() == postaja.getId())) {
-                            p.getPostaje().add(postaja);
-                        }
-                    });
+        Ponudnik ponudnik = em.find(Ponudnik.class, id);
+        if (ponudnik != null) {
+            em.remove(ponudnik);
         }
     }
 
     @Override
-    public void posodobiPostajo(Ponudnik ponudnik,Polnilnica postaja) {
-        synchronized (ponudniki) {
-            ponudniki.stream()
-                    .filter(p -> p.getId() == ponudnik.getId())
-                    .findFirst()
-                    .ifPresent(p -> {
-                        p.getPostaje().stream()
-                                .filter(po -> po.getId() == postaja.getId())
-                                .findFirst()
-                                .ifPresent(po -> p.getPostaje().set(p.getPostaje().indexOf(po), postaja));
-                    });
+    public void dodajPostajo(Ponudnik ponudnik, Polnilnica postaja) {
+        Ponudnik p = em.find(Ponudnik.class, ponudnik.getId());
+        if (p != null) {
+            boolean exists = p.getPostaje().stream().anyMatch(po -> po.getId() == postaja.getId());
+            if (!exists) {
+                postaja.setPonudnik(p);
+                p.getPostaje().add(postaja);
+                em.persist(postaja);
+            }
         }
-        //p.postaje() == referenca na ponudnik postaje
-        //CANCER surely loops are better?
     }
 
     @Override
-    public void odstraniPostajo(Ponudnik ponudnik,int postajaId) {
-        synchronized (ponudniki) {
-            ponudniki.stream()
-                    .filter(p -> p.getId() == ponudnik.getId())
+    public void posodobiPostajo(Ponudnik ponudnik, Polnilnica postaja) {
+        // Update the post (this assumes that postaja is detached and should be merged)
+        em.merge(postaja);
+    }
+
+    @Override
+    public void odstraniPostajo(Ponudnik ponudnik, int postajaId) {
+        Ponudnik p = em.find(Ponudnik.class, ponudnik.getId());
+        if (p != null) {
+            Polnilnica pol = p.getPostaje().stream()
+                    .filter(po -> po.getId() == postajaId)
                     .findFirst()
-                    .ifPresent(p -> {
-                        p.getPostaje().stream()
-                                .filter(po -> po.getId() == postajaId)
-                                .findFirst()
-                                .ifPresent(po -> p.getPostaje().remove(p.getPostaje().indexOf(po)));
-                    });
+                    .orElse(null);
+            if (pol != null) {
+                p.getPostaje().remove(pol);
+                if (em.contains(pol)) {
+                    em.remove(pol);
+                } else {
+                    em.remove(em.merge(pol));
+                }
+            }
         }
     }
 
     @Override
     public Ponudnik pridobiPonudnika(int id) {
-        synchronized (ponudniki) {
-            return ponudniki.stream()
-                    .filter(p -> p.getId() == id)
-                    .findFirst()
-                    .orElse(null);
-        }
-         //returnamo instanco ki jo (prvo) najdemo z filtrom
-         //else return null
+        return em.find(Ponudnik.class, id);
     }
 
     @Override
     public ArrayList<Ponudnik> vrniVsePonudnike() {
-        synchronized (ponudniki) {
-            return new ArrayList<>(ponudniki);
-        }
+        return (ArrayList<Ponudnik>) em.createQuery("SELECT p FROM Ponudnik p", Ponudnik.class)
+                .getResultList();
     }
 }

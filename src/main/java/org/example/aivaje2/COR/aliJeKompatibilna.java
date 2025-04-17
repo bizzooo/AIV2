@@ -3,7 +3,7 @@ package org.example.aivaje2.COR;
 import org.example.aivaje2.VAO.Polnilnica;
 import org.example.aivaje2.VAO.User;
 
-public class aliJeKompatibilna implements iPolnilnicaHandler{
+public class aliJeKompatibilna implements iPolnilnicaHandler {
     private iPolnilnicaHandler next;
 
     @Override
@@ -12,13 +12,14 @@ public class aliJeKompatibilna implements iPolnilnicaHandler{
     }
 
     @Override
-    public void handleReq(User user, Polnilnica polnilnica) {
-        if(!user.getCarType().equalsIgnoreCase("electric")){
+    public boolean handleReq(User user, Polnilnica polnilnica) {
+        if (!user.getCarType().equalsIgnoreCase("electric")) {
             System.out.println("Uporabnik ima naroben avto");
-            return;
+            return false;
         }
-        if(next != null){
-            next.handleReq(user, polnilnica);
+        if (next != null) {
+            return next.handleReq(user, polnilnica);
         }
+        return true;
     }
 }

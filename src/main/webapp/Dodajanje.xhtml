@@ -1,27 +1,41 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
     <title>Title</title>
 </h:head>
 
 <h:body>
+    <f:view>
 
-    <h:form>
-        <h:inputText for="ime" value="Ime Uporabnika:"/>
-        <h:outputText id="ime" action="#{vstaviBean.ime}"/>
+    <br />
 
-        <h:inputText for="email" value="Email Uporabnika:"/>
-        <h:outputText id="email" action="#{vstaviBean.email}"/>
+    <h:form id="userForm">
+        <h:panelGrid columns="2" cellpadding="5">
+            <h:outputLabel for="ime" value="Ime:" />
+            <h:inputText id="ime" value="#{vstaviBean.ime}" />
 
-        <h:inputText for="balance" value="Balance Uporabnika:"/>
-        <h:outputText id="balance" action="#{vstaviBean.balance}"/>
+            <h:outputLabel for="email" value="Email:" />
+            <h:inputText id="email" value="#{vstaviBean.email}" />
 
-        <h:inputText for="carType" value="Tip Avta Uporabnika:"/>
-        <h:outputText id="carType" action="#{vstaviBean.carType}"/>
+            <h:outputLabel for="balance" value="Balance:" />
+            <h:inputText id="balance" value="#{vstaviBean.balance}" />
+
+            <h:outputLabel for="carType" value="Car Type:" />
+            <h:inputText id="carType" value="#{vstaviBean.carType}" />
+        </h:panelGrid>
+        <h:commandButton value="Dodaj Uporabnika" action="#{vstaviBean.addUser}" />
     </h:form>
+
+    <br />
+
+    <h:form id="printForm">
+        <h:commandButton value="Izpiši podatke v konzolo" action="#{vstaviBean.printData}" />
+    </h:form>
+    </f:view>
 </h:body>
 
 </html>

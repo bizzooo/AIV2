@@ -1,6 +1,21 @@
 package org.example.aivaje2.VAO;
 
-public class User {
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+import java.io.Serializable;
+
+
+@Entity
+@Table(name = "user")
+public class User implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue
+    private int id;
     String ime;
     String email;
     double balance;
@@ -11,6 +26,9 @@ public class User {
         this.email = email;
         this.balance = balance;
         this.carType = carType;
+    }
+
+    public User() {
     }
 
     public String getIme() {
@@ -43,5 +61,9 @@ public class User {
 
     public void setCarType(String carType) {
         this.carType = carType;
+    }
+
+    public int getId() {
+        return id;
     }
 }

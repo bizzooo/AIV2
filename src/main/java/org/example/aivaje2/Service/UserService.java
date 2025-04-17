@@ -1,16 +1,29 @@
 package org.example.aivaje2.Service;
 
+import jakarta.ejb.EJB;
+import jakarta.ejb.Stateless;
 import org.example.aivaje2.COR.iPolnilnicaHandler;
 import org.example.aivaje2.DAO.UserDAO;
 import org.example.aivaje2.DAO.iUserDAO;
 import org.example.aivaje2.VAO.User;
 
+import java.util.List;
+
+@Stateless
 public class UserService {
-    private final iUserDAO userDAO = UserDAO.getInstance();
+    @EJB
+    private iUserDAO userDAO;
 
     iPolnilnicaHandler PolnilnicaNaVoljo;
 
-    public void dodajUser(User user) {
+    public User getUser(User user) {
+        if(user.getEmail() == null){
+            throw new IllegalArgumentException("Email is null");
+        }
+        return userDAO.getUser(user);
+    }
+
+    public void insertUser(User user) {
         if(user.getEmail() == null){
             throw new IllegalArgumentException("Email is null");
         }
@@ -29,5 +42,9 @@ public class UserService {
             throw new IllegalArgumentException("Email is null");
         }
         userDAO.deleteUser(user);
+    }
+
+    public List<User> getAllUsers() {
+        return userDAO.getAllUsers();
     }
 }

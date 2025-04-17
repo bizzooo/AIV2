@@ -5,5 +5,5 @@ import org.example.aivaje2.VAO.User;
 
 public interface iPolnilnicaHandler {
     void setNextHandler(iPolnilnicaHandler nextHandler);
-    void handleReq(User user, Polnilnica polnilnica);
+    boolean handleReq(User user, Polnilnica polnilnica);
 }
